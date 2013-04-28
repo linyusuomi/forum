@@ -1,0 +1,21 @@
+# src/Ens/ForumBundle/Resources/config/doctrine/Post.orm.yml
+Ens\ForumBundle\Entity\Post:
+  type: entity
+  table: posts
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      nullable: true
+    text:
+      type: string
+      length: 255
+    image:
+      type: string
+      length: 255
+      nullable: true
+    

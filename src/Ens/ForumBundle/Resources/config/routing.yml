@@ -1,0 +1,9 @@
+# src/Ens/ForumBundle/Resources/config/routing.yml
+EnsForumBundle_post:
+    resource: "@EnsForumBundle/Resources/config/routing/post.yml"
+    prefix: /post
+ 
+EnsForumBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: EnsForumBundle:Default:index }
+

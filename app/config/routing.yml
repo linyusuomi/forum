@@ -1,0 +1,4 @@
+ens_forum:
+    resource: "@EnsForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
