@@ -9,10 +9,10 @@ use Ens\ForumBundle\Entity\Post;
 use Ens\ForumBundle\Form\PostType;
 
 /**
- * Post controller.
+ * Index controller.
  *
  */
-class PostController extends Controller
+class IndexController extends Controller
 {
     /**
      * Lists all Post entities.
@@ -21,11 +21,13 @@ class PostController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $entity = new Post();
         $entities = $em->getRepository('EnsForumBundle:Post')->findAll();
+        $form   = $this->createForm(new PostType(), $entity);
 
-        return $this->render('EnsForumBundle:Post:index.html.twig', array(
+        return $this->render('EnsForumBundle:Index:index.html.twig', array(
             'entities' => $entities,
+            'form'   => $form->createView(),
         ));
     }
 
@@ -38,16 +40,21 @@ class PostController extends Controller
         $entity  = new Post();
         $form = $this->createForm(new PostType(), $entity);
         $form->bind($request);
+        $name = $request->request->all();
+        echo "<pre>";
+        print_r($name);
+        echo "</pre>";die();
+        
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ens_post_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ens_index_index', array('id' => $entity->getId())));
         }
 
-        return $this->render('EnsForumBundle:Post:new.html.twig', array(
+        return $this->render('EnsForumBundle:Index:index.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -62,7 +69,7 @@ class PostController extends Controller
         $entity = new Post();
         $form   = $this->createForm(new PostType(), $entity);
 
-        return $this->render('EnsForumBundle:Post:new.html.twig', array(
+        return $this->render('EnsForumBundle:Index:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -76,7 +83,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('EnsForumBundle:Post')->find($id);
+        $entity = $em->getRepository('EnsForumBundle:Index')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -84,7 +91,7 @@ class PostController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('EnsForumBundle:Post:show.html.twig', array(
+        return $this->render('EnsForumBundle:Index:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -97,7 +104,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('EnsForumBundle:Post')->find($id);
+        $entity = $em->getRepository('EnsForumBundle:Index')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -106,7 +113,7 @@ class PostController extends Controller
         $editForm = $this->createForm(new PostType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('EnsForumBundle:Post:edit.html.twig', array(
+        return $this->render('EnsForumBundle:Index:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -121,7 +128,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('EnsForumBundle:Post')->find($id);
+        $entity = $em->getRepository('EnsForumBundle:Index')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
@@ -135,10 +142,10 @@ class PostController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ens_post_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ens_index_edit', array('id' => $id)));
         }
 
-        return $this->render('EnsForumBundle:Post:edit.html.twig', array(
+        return $this->render('EnsForumBundle:Index:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -156,7 +163,7 @@ class PostController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('EnsForumBundle:Post')->find($id);
+            $entity = $em->getRepository('EnsForumBundle:Index')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Post entity.');
@@ -166,7 +173,7 @@ class PostController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('ens_post'));
+        return $this->redirect($this->generateUrl('ens_index'));
     }
 
     /**

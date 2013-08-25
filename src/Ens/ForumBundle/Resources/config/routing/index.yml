@@ -1,0 +1,30 @@
+ens_index:
+    pattern:  /
+    defaults: { _controller: "EnsForumBundle:Index:index" }
+
+ens_index_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EnsForumBundle:Index:show" }
+
+ens_index_new:
+    pattern:  /new
+    defaults: { _controller: "EnsForumBundle:Index:new" }
+
+ens_index_create:
+    pattern:  /create
+    defaults: { _controller: "EnsForumBundle:Index:create" }
+    requirements: { _method: post }
+
+ens_index_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EnsForumBundle:Index:edit" }
+
+ens_index_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EnsForumBundle:Index:update" }
+    requirements: { _method: post|put }
+
+ens_index_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EnsForumBundle:Index:delete" }
+    requirements: { _method: post|delete }

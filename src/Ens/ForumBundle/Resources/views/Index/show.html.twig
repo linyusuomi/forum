@@ -26,17 +26,17 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('ens_post') }}">
+        <a href="{{ path('ens_index') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('ens_post_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('ens_index_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('ens_post_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('ens_index_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>

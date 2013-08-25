@@ -3,6 +3,7 @@
 namespace Ens\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -23,7 +24,7 @@ class Post
      * @var string
      */
     private $text;
-
+    
     /**
      * @var string
      */
@@ -85,12 +86,12 @@ class Post
     {
         return $this->text;
     }
-
+    
     /**
      * Set image
      *
      * @param string $image
-     * @return Post
+     * @return Post 
      */
     public function setImage($image)
     {
@@ -102,7 +103,7 @@ class Post
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {

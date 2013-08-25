@@ -13,7 +13,7 @@ class PostType extends AbstractType
         $builder
             ->add('name')
             ->add('text')
-            ->add('image')
+            ->add('image', 'file')
         ;
     }
 
